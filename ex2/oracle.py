@@ -3,6 +3,7 @@ from dotenv import load_dotenv
 
 load_dotenv()
 
+
 def load_config() -> dict[str, str | None]:
     return {
         "MATRIX_MODE": os.getenv("MATRIX_MODE", "development"),
@@ -11,6 +12,7 @@ def load_config() -> dict[str, str | None]:
         "LOG_LEVEL": os.getenv("LOG_LEVEL", "INFO"),
         "ZION_ENDPOINT": os.getenv("ZION_ENDPOINT"),
     }
+
 
 def display_config(config: dict[str, str | None]) -> None:
     print("Configuration loaded:")
@@ -30,12 +32,14 @@ def display_config(config: dict[str, str | None]) -> None:
     else:
         print("Zion Network: Offline")
 
+
 def display_mode_info(config: dict[str, str | None]) -> None:
     mode = config['MATRIX_MODE']
     if mode == "production":
         print("Running in PRODUCTION mode - security hardened")
     else:
         print("Running in DEVELOPMENT mode - debug enabled")
+
 
 def security_check(config: dict[str, str | None]) -> None:
     print("Environment security check:")
@@ -46,7 +50,8 @@ def security_check(config: dict[str, str | None]) -> None:
         print("[WARNING] .env file not found")
     print("[OK] Production overrides available")
 
-if __name__=="__main__":
+
+if __name__ == "__main__":
     print("ORACLE STATUS: Reading the Matrix...\n")
     config = load_config()
     display_config(config)
